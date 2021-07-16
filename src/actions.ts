@@ -5,8 +5,8 @@ enum SlideAction {
 }
 
 enum ModuleAction {
-    CompleteModule = 'COMPLETE_MODULE',
-    FinalSlide = 'FINAL_SLIDE',
+    Complete = 'COMPLETE_MODULE',
+    Final = 'FINAL_SLIDE',
 }
 
 const ApiAction = {
