@@ -2,14 +2,17 @@ import store from 'store2';
 import api from './api';
 import { getId } from './helpers';
 
-export const reportAction = (action: ApiAction, mid: string, data: object) => {
+export const reportAction = (
+  courseId: string,
+  action: ApiAction,
+  data: object
+) => {
   api
     .post('debug', {
+      id: getId(),
+      uuid: courseId,
       action,
-      mid,
-      identifier: getId(),
       data: {
-        action,
         ...data,
         env: process.env.NODE_ENV,
       },
@@ -18,7 +21,7 @@ export const reportAction = (action: ApiAction, mid: string, data: object) => {
       console.debug('Action report sent successfully.');
     })
     .catch((error) => {
-      console.error('Error sending action report.', error);
+      console.debug('Error sending action report.', error);
     });
 };
 
