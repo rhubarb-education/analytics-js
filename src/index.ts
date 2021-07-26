@@ -1,9 +1,6 @@
 import store from 'store2';
-import { ApiAction } from './actions';
 import api from './api';
 import { getId } from './helpers';
-
-export { ApiAction } from './actions';
 
 export const reportAction = (
   courseId: string,
