@@ -14,4 +14,4 @@ const ApiAction = {
   ...SlideAction,
 };
 
-type ApiAction = ModuleAction | SlideAction;
+export type ApiAction = ModuleAction | SlideAction;
