@@ -1547,6 +1547,13 @@
     "@webassemblyjs/wast-parser" "1.9.0"
     "@xtuc/long" "4.2.2"
 
+"@xapi/xapi@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@xapi/xapi/-/xapi-1.2.1.tgz#c033e43169a12bdf8338653b5a2603aa6dbbf921"
+  integrity sha512-g9jt1eWueCZLAnJylK44WiSWtsmpvnJplk2rykPX1nHQnaANLciNENDolc6WVdnpTKTiMKmBKcNjPWwNElTvRQ==
+  dependencies:
+    axios "^0.21.1"
+
 "@xtuc/ieee754@^1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@xtuc/ieee754/-/ieee754-1.2.0.tgz#eef014a3145ae477a1cbc00cd1e552336dceb790"
