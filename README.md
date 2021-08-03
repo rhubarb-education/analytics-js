@@ -1,4 +1,4 @@
-# Analytics JS
+# Conker Client
 
 Package to report learning actions in Rhubarb Education's bespoke online learning modules.
 
@@ -6,7 +6,6 @@ Package to report learning actions in Rhubarb Education's bespoke online learnin
 ```js
 import { Conker, IConkerConfig } from 'conker-client';
 
-// Initialize
 const config: IConkerConfig = {
     endpoint: "https://example.test/xapi/",
     username: "username",
