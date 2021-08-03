@@ -1,14 +1,23 @@
 # Analytics JS
 
-Use this package to report learning actions in Rhubarb Education online learning modules.
+Package to report learning actions in Rhubarb Education's bespoke online learning modules.
 
 ## Usage
 ```js
-import { reportAction, clearActionData } from 'analytics-js';
+import { Conker, IConkerConfig } from 'conker-client';
 
-// Report course completion
-reportAction('ID', 'COMPLETE_MODULE', {})
+// Initialize
+const config: IConkerConfig = {
+    endpoint: "https://example.test/xapi/",
+    username: "username",
+    password: "password",
+}
 
-// Clear local action data
-clearActionData();
+Conker.init(config);
+
+Conker.report(
+    Conker.generateAnonymousAgentObject("https://example.com"), 
+    Conker.verbs.COMPLETED, 
+    Conker.generateCourseObject('https://example.com/course-1', 'Course 1', 'An example course.'),
+);
 ```
