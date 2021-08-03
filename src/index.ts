@@ -3,7 +3,6 @@ import { AxiosPromise } from "axios";
 import store from 'store2';
 import { generateAnonymousAgentObject, generateCourseContextObject, generateCourseObject } from './helpers';
 
-
 type IConker = {
     _client: XAPI | null;
     verbs: typeof XAPI.Verbs;
