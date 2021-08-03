@@ -1,32 +1,37 @@
 import XAPI, { Activity, Actor, Context, Statement, Verb } from "@xapi/xapi";
 import { AxiosPromise } from "axios";
 import store from 'store2';
+import { generateAnonymousAgentObject, generateCourseContextObject, generateCourseObject } from './helpers';
 
-export { generateAnonymousAgentObject, generateCourseContextObject, generateCourseObject } from './helpers';
 
 type IConker = {
     _client: XAPI | null;
-    init: (opts: IConkerInit) => XAPI;
+    verbs: typeof XAPI.Verbs;
+    init: (config: IConkerConfig) => XAPI;
     report: (learner: Actor, action: Verb, course: Activity, context?: Context) => AxiosPromise<string[]> | void;
     clearLocalData: () => void;
+    generateAnonymousAgentObject: typeof generateAnonymousAgentObject; 
+    generateCourseContextObject: typeof generateCourseContextObject; 
+    generateCourseObject: typeof generateCourseObject;
 }
 
-type IConkerInit = {
+export type IConkerConfig = {
     endpoint: string, 
-    user: string, 
-    pass: string
+    username: string, 
+    password: string
 }
 
 export const Conker: IConker = {
     _client: null,
+    verbs:  XAPI.Verbs,
 
-    init: (opts: IConkerInit) => {
+    init: (config: IConkerConfig) => {
         if (Conker._client) {
             console.warn('Conker.init() was called multiple times, ignoring...')
             return Conker._client
         }
-        let auth = XAPI.toBasicAuth(opts.user, opts.pass)
-        Conker._client = new XAPI(opts.endpoint, auth);
+        let auth = XAPI.toBasicAuth(config.username, config.password)
+        Conker._client = new XAPI(config.endpoint, auth);
         return Conker._client
     },
 
@@ -53,7 +58,9 @@ export const Conker: IConker = {
 
     clearLocalData: () => {
         store.clearAll();
-    }
-}
+    },
 
-export const CourseVerbs = XAPI.Verbs;
+    generateAnonymousAgentObject, 
+    generateCourseContextObject, 
+    generateCourseObject
+}
