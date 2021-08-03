@@ -1,4 +1,4 @@
-import { Activity, Agent, Context } from '@xapi/xapi';
+import { Activity, Agent, ContextActivity } from '@xapi/xapi';
 import store from 'store2';
 
 const generateId = () => {
@@ -39,24 +39,18 @@ export const generateAnonymousAgentObject = (homePage: string, userId: string = 
   }
 }
 
-export const generateCourseContextObject = (id: string, name: string, description: string): Context => {
+export const generateCourseContextObject = (id: string, name: string, description: string): ContextActivity => {
   return {
-      contextActivities: {
-          parent: [
-              {
-                  objectType: "Activity",
-                  id: id,
-                  definition: {
-                      name: {
-                          "en-US": name,
-                      },
-                      description: {
-                          "en-US": description
-                      },
-                      type: "http://adlnet.gov/expapi/activities/course"
-                  }
-              }
-          ],
-      }  
-  }
+        objectType: "Activity",
+        id: id,
+        definition: {
+            name: {
+                "en-US": name,
+            },
+            description: {
+                "en-US": description
+            },
+            type: "http://adlnet.gov/expapi/activities/course"
+        }
+    }
 }
