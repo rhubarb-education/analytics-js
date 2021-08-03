@@ -17,8 +17,8 @@ type IConker = {
 
 export type IConkerConfig = {
     endpoint: string, 
-    username: string, 
-    password: string
+    key: string, 
+    secret: string
 }
 
 export const Conker: IConker = {
@@ -30,7 +30,7 @@ export const Conker: IConker = {
             console.warn('Conker.init() was called multiple times, ignoring...')
             return Conker._client
         }
-        let auth = XAPI.toBasicAuth(config.username, config.password)
+        let auth = XAPI.toBasicAuth(config.key, config.secret)
         Conker._client = new XAPI(config.endpoint, auth);
         return Conker._client
     },
@@ -42,7 +42,7 @@ export const Conker: IConker = {
         context?: Context
     ) => {
         if (!Conker._client) {
-            console.error('No conker client initiated. Have you called Conker.init()?');
+            console.error('No conker client initialized. Have you called Conker.init()?');
             return;
         }
 
