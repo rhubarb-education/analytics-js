@@ -1,4 +1,4 @@
-import XAPI, { Activity, Actor, Context, Statement, Verb } from "@xapi/xapi";
+import XAPI, { Activity, Actor, Context, Statement, Timestamp, Verb } from "@xapi/xapi";
 import { AxiosPromise } from "axios";
 import store from 'store2';
 import { generateAnonymousAgentObject, generateCourseContextObject, generateCourseObject } from './helpers';
@@ -7,7 +7,7 @@ type IConker = {
     _client: XAPI | null;
     verbs: typeof XAPI.Verbs;
     init: (config: IConkerConfig) => XAPI;
-    report: (learner: Actor, action: Verb, course: Activity, context?: Context) => AxiosPromise<string[]> | void;
+    report: (learner: Actor, action: Verb, course: Activity, context?: Context, timestamp?: Timestamp) => AxiosPromise<string[]> | void;
     clearLocalData: () => void;
     generateAnonymousAgentObject: typeof generateAnonymousAgentObject; 
     generateCourseContextObject: typeof generateCourseContextObject; 
@@ -38,7 +38,8 @@ export const Conker: IConker = {
         learner: Actor,
         action: Verb,
         course: Activity,
-        context?: Context
+        context?: Context,
+        timestamp?: Timestamp,
     ) => {
         if (!Conker._client) {
             console.error('No conker client initialized. Have you called Conker.init()?');
@@ -49,7 +50,8 @@ export const Conker: IConker = {
             actor: learner,
             verb: action,
             object: course,
-            context: context
+            context: context,
+            timestamp,
         };
     
         return Conker._client.sendStatement(xApiStatement);
