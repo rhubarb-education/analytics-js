@@ -8,8 +8,8 @@ import { Conker, IConkerConfig } from 'conker-client';
 
 const config: IConkerConfig = {
     endpoint: "https://example.test/xapi/",
-    username: "username",
-    password: "password",
+    key: "KEY",
+    secret: "SECRET",
 }
 
 Conker.init(config);
