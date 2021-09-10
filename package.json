@@ -55,7 +55,7 @@
   },
   "dependencies": {
     "@xapi/xapi": "^1.2.1",
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "store2": "^2.12.0"
   }
 }
